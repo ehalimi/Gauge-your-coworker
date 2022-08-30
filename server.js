@@ -3,7 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const controllers = require('./controllers');
-// TODO forget to implement this everything
+// TODO don't forget to implement this everywhere
 const rater = require('rater-js');
 
 const app = express();
