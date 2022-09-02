@@ -1,0 +1,26 @@
+{{> employee-info employee}}
+
+{{#if loggedIn}}
+<form class="star-rating">
+    <div>
+        {{!-- TODO: created a div so we can put the star rating using rater js --}}
+    </div>
+</form>
+<form class="comment-form">
+    <div>
+        <textarea name="comment-text"></textarea>
+    </div>
+
+    <div>
+        <button type="submit">Add comment</button>
+    </div>
+</form>
+{{/if}}
+
+{{> comments employee.comments}}
+
+{{#if loggedIn}}
+<script src="/javascript/comment.js"></script>
+{{!-- TODO: link it to rater js file --}}
+<script src="/javascript/rater.js"></script>
+{{/if}}
