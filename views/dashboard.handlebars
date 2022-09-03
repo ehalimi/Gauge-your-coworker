@@ -4,11 +4,16 @@
     <form class="new-employee-form">
         <div>
             <label for="employee-name">Name</label>
-            <input type="text" name="employee-name">
+            <input type="text" name="employee-name" id ='employee-name'>
         </div>
         <div>
             <label for="workplace-name">Workplace</label>
-            <input type="text" name="workplace-name">
+            <input type="text" name="workplace-name" id="workplace" >
+        </div>
+        {{!-- TODO added position here as well since it is in the employee models --}}
+          <div>
+            <label for="position">Workplace</label>
+            <input type="text" name="position" id="position">
         </div>
         <button type="submit" class="btn">Create</button>
     </form>

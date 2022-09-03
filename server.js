@@ -4,7 +4,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const controllers = require('./controllers');
 // TODO don't forget to implement this everywhere
-const rater = require('rater-js');
+// const rater = require('rater-js');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
