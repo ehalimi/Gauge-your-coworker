@@ -1,0 +1,31 @@
+<section>
+    <h2>Add a new employee</h2>
+
+    <form class="new-employee-form">
+        <div>
+            <label for="employee-name">Name</label>
+            <input type="text" name="employee-name">
+        </div>
+        <div>
+            <label for="workplace-name">Workplace</label>
+            <input type="text" name="workplace-name">
+        </div>
+        <button type="submit" class="btn">Create</button>
+    </form>
+</section>
+
+{{#if employees.length}}
+<section>
+    <h2>Employees You Added</h2>
+    <ol>
+        {{#each employees as |employee|}}
+        <li>
+            {{> employee-info employee}}
+            <a href="/dashboard/edit/{{employee_id}}" class="edit-link">Edit Employee</a>
+        </li>
+        {{/each}}
+    </ol>
+</section>
+{{/if}}
+
+<script src="/javascript/add-employee"></script>

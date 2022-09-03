@@ -7,7 +7,7 @@ User.hasMany(Employee, {
     foreignKey: 'user_id'
 });
 
-//TODO this is weird :), create employee/assocciation 
+//TODO: this is weird :), create employee/assocciation 
 Employee.belongsTo(User, {
     foreignKey: 'user_id',
     onDelete: 'SET NULL'

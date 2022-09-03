@@ -18,7 +18,7 @@ Employee.init(
                 len: [1]
             }
         },
-        //TODO take it off if it's hard
+        //TODO: take it off if it's hard
         workplace_id: {
             type: DataTypes.STRING,
             references: {
