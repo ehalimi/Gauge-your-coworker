@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const { Employee, Workplace, Comment } = require('../../models');
-// const Employee = require('../../models/Employee');
 
 // get all users
 router.get('/', (req, res) => {

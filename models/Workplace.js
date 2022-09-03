@@ -18,6 +18,14 @@ Workplace.init (
                 len: [1]
             }
         }
+    },
+    {
+    
+        sequelize,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'workplace'
+        
     }
 )
 
