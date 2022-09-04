@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
 const { Comment } = require('../models');
-const withAuth = require('../utils/authentication');
+cons = require('../utils/authentication');
 
 // get all comments for dashboard
-router.get('/', withAuth, (req, res) => {
+router.get('/', (req, res) => {
   console.log(req.session);
   console.log('======================');
   Comment.findAll({
@@ -22,13 +22,13 @@ router.get('/', withAuth, (req, res) => {
     });
 });
 
-router.get("/new", withAuth, (req, res) => {
+router.get("/new", (req, res) => {
     res.render("new-comment", {
       layout: "dashboard"
     });
   });
 
-router.get('/edit/:id', withAuth, (req, res) => {
+router.get('/edit/:id', (req, res) => {
   Comment.findByPk(req.params.id)
     .then(dbCommentData => {
       if (dbCommentData) {
