@@ -59,4 +59,19 @@ include: [
     });
 });
 
+// add a Employee post via api/Employees TODO need to add authentication in later
+router.post('/', (req, res) => {
+
+  Employee.create({
+    employee_name: req.body.employee_name,
+    work_name: req.body.work_name,
+    position: req.body.position
+  })
+    .then(dbEmployeeData => res.json(dbEmployeeData))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router; 
