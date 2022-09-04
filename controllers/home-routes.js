@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
 // render handlebar home page for this data. 
       res.render('homepage', {
         employees,
-        // loggedIn: req.session.loggedIn
+        
       });
     })
     .catch(err => {
@@ -34,4 +34,40 @@ router.get('/', (req, res) => {
     });
 });
 
+// get employees by id so we can view the reviews left by coworkers
+router.get('/employees/:id', (req, res) => {
+  Employee.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      'id',
+      'employee_name',
+      'work_name',
+      'position'
+    ],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'Employee_id', 'created_at'],
+
+      }
+    ]
+  })
+    .then(dbEmployeeData => {
+      if (!dbEmployeeData) {
+        res.status(404).json({ message: 'No employee found with this id' });
+        return;
+      }
+      const employee = dbEmployeeData.get({ plain: true });
+      // render employee page so we can view reviews
+      res.render('single-comment', {
+        employee
+      })
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 module.exports = router;
