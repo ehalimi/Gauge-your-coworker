@@ -1,3 +1,12 @@
 ul, nav {
     list-style-type: none;
 }
+
+
+.star-rating {
+        background: url("myStar_off.svg") ;
+}
+ 
+.star-rating .star-value{
+        background: url("myStar_on.svg") ;
+}

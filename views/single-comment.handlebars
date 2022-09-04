@@ -2,8 +2,20 @@
 
 {{#if loggedIn}}
 <form class="star-rating">
-    <div>
+    <div id="rater">
         {{!-- TODO: created a div so we can put the star rating using rater js --}}
+        <pre>
+            <code>
+            {
+                starSize:32,
+                element:document.querySelector("#rater"),
+                rateCallback:function rateCallback(rating, done) {
+                    this.setRating(rating); 
+                    done(); 
+                }
+            }
+        </code>
+    </pre>
     </div>
 </form>
 <form class="comment-form">
@@ -21,5 +33,7 @@
 {{#if loggedIn}}
 <script src="/javascript/comment.js"></script>
 {{!-- TODO: link it to rater js file --}}
+<script src="node-modules/rater-js/index.js"></script>
 <script src="/javascript/rater.js"></script>
+
 {{/if}}
