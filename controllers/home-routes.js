@@ -67,6 +67,7 @@ router.get('/employees/:id', (req, res) => {
       // render employee page so we can view reviews
       res.render('single-comment', {
         employee,
+        loggedIn: req.session.loggedIn
         
       })
     })

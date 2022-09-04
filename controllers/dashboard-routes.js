@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     },
   })
     .then(dbCommentData => {
-      const comment = dbCommentData.map(post => post.get({ plain: true }));
+      const comment = dbCommentData.map(comments => comments.get({ plain: true }));
       res.render('dashboard', { comment, loggedIn: true });
     })
     .catch(err => {
@@ -22,11 +22,11 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get("/new", (req, res) => {
-    res.render("new-comment", {
-      layout: "dashboard"
-    });
-  });
+// router.get("/new", (req, res) => {
+//     res.render("new-comment", {
+//       layout: "dashboard"
+//     });
+//   });
 
 router.get('/edit/:id', (req, res) => {
   Comment.findByPk(req.params.id)
