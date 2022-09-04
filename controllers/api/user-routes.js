@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { User, Employee, Comment } = require('../../models');
 
-
 // get all users
 router.get('/', (req, res) => {
   User.findAll({
@@ -64,6 +63,7 @@ router.post('/', (req, res) => {
       res.status(500).json(err);
     });
 });
+//allow user to login
 router.post('/login', (req, res) => {
   // expects {email: 'lernantino@gmail.com', password: 'password1234'}
   User.findOne({
@@ -143,5 +143,4 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-
-module.exports = router; 
+module.exports = router;

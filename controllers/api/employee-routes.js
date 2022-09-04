@@ -25,7 +25,6 @@ router.get('/', (req, res) => {
       res.status(500).json(err);
     });
 });
-
 // get specific Employee post via id using /api/Employees/:id
 router.get('/:id', (req, res) => {
   Employee.findOne({
@@ -41,7 +40,7 @@ router.get('/:id', (req, res) => {
 include: [
   {
     model: Comment,
-    attributes: ['id', 'comment_text', 'Employee_id', 'user_id', 'created_at'],
+    attributes: ['id', 'comment_text', 'Employee_id', 'created_at'],
 
   }
 ]
@@ -58,7 +57,6 @@ include: [
       res.status(500).json(err);
     });
 });
-
 // add a Employee post via api/Employees TODO need to add authentication in later
 router.post('/', (req, res) => {
 
@@ -73,7 +71,6 @@ router.post('/', (req, res) => {
       res.status(500).json(err);
     });
 });
-
 // edit Employee post via its id api/Employees/:id, TODO add in authentication
 router.put('/:id', (req, res) => {
   Employee.update(req.body,
@@ -95,7 +92,6 @@ router.put('/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
-
 // allows user to delete Employee posting via its id api/Employees/:id TODO Add Authentication back in
 router.delete('/:id', (req, res) => {
   console.log('id', req.params.id);
@@ -117,5 +113,4 @@ router.delete('/:id', (req, res) => {
     });
 });
 
-
-module.exports = router; 
+module.exports = router;
