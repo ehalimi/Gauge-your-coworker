@@ -32,30 +32,45 @@ router.get('/', (req, res) => {
     });
 });
 
-// router.get("/new", (req, res) => {
-//     res.render("new-comment", {
-//       layout: "dashboard"
-//     });
-//   });
+router.get('/edit/:id', (req, res) => {
+  Employee.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      'id',
+      'employee_name',
+      'work_name',
+      'position'
+    ],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'employee_id', 'created_at'],
 
-// router.get('/edit/:id', (req, res) => {
-//   Comment.findByPk(req.params.id)
-//     .then(dbCommentData => {
-//       if (dbCommentData) {
-//         const post = dbCommentData.get({ plain: true });
+      }
+    ]
+  })
+    .then(dbEmployeeData => {
+      console.log(dbEmployeeData)
+      if (!dbEmployeeData) {
+        res.status(404).json({ message: 'No employee found with this id' });
+        return;
+      }
+      const employee = dbEmployeeData.get({ plain: true });
+      // render employee page so we can view reviews
+      res.render('edit-employees', {
+        employee,
+        loggedIn: true 
+        
+      })
+    })
+    .catch(err => {
+    
+      res.status(500).json(err);
+    });
+});
 
-//         res.render("edit-post", {
-//             layout: "dashboard",
-//             post
-//           });
-//         } else {
-//           res.status(404).end();
-//         }
-//       })
-//       .catch(err => {
-//         res.status(500).json(err);
-//       });
-//   });  
 
 
 module.exports = router;

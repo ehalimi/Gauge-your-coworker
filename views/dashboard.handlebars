@@ -26,7 +26,7 @@
         {{#each employees as |employee|}}
         <li>
             {{> employee-info employee}}
-            <a href="/dashboard/edit/{{employee_id}}" class="edit-link">Edit Employee</a>
+            <a href="/dashboard/edit/{{{id}}}" class="edit-link">Edit Employee</a>
         </li>
         {{/each}}
     </ol>

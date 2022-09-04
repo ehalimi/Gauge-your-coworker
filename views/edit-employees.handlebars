@@ -1,0 +1,38 @@
+<section class="row text-center">
+  <h2>
+    Edit Employee Information
+  </h2>
+  <form class="edit-employee-form row">
+    <div class="row justify-content-center">
+      <label class="col-2" for="employee-name">Name</label>
+      <input class="col-2" id="employee-name" name="employee-name" type="text" value="{{employee.employee_name}}" />
+    </div>
+    <div class="row justify-content-center">
+      <label class="col-2" for="work-name">Content</label>
+      <input class="col-2"
+        id="work-name"
+        name="work-name"
+        type="text"
+        value="{{employee.work_name}}"
+      />
+    </div>
+       <div class="row justify-content-center">
+      <label class="col-2" for="position">Content</label>
+      <input class="col-2"
+        id="position"
+        name="position"
+        type="text"
+        value="{{employee.position}}"
+      />
+    </div>
+  <div class="row">
+    <button class=" btn col-2 " type="submit">Save</button>
+    <button class=" btn col-2 delete-emp-btn " type="button">Delete</button>
+  </div>  
+  </form>
+</section>
+<div>
+
+
+<script src="/javascript/edit-employee.js"></script>
+{{!-- <script src="/javascript/delete-employee.js"></script> --}}
