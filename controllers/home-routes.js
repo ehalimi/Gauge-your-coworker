@@ -23,11 +23,14 @@ router.get('/', (req, res) => {
     .then(dbEmployeeData => {
       const employees = dbEmployeeData.map(employee => employee.get({ plain: true }));
 // render handlebar home page for this data. 
-      res.render('homepage', {
-        employees,
-        loggedIn: true
-        
-      });
+     
+        if (req.session.user_id) {
+        // second arguement of res.render should be an object
+        //containing the data you wish to display in the templates
+        res.render("homepage", { employees, loggedIn: true });
+      } else {
+        res.render("homepage", { employees });
+      }
     })
     .catch(err => {
       console.log(err);
@@ -63,7 +66,8 @@ router.get('/employees/:id', (req, res) => {
       const employee = dbEmployeeData.get({ plain: true });
       // render employee page so we can view reviews
       res.render('single-comment', {
-        employee
+        employee,
+        
       })
     })
     .catch(err => {
