@@ -6,7 +6,7 @@ async function newEmployee(event) {
     const work_name = document.querySelector('#workplace')
     const position = document.querySelector('#position');
 
-    const response = await fetch(`/api/employee`, {
+    const response = await fetch(`/api/employees`, {
         method: 'POST',
         body: JSON.stringify({
             employee_name,
