@@ -74,4 +74,26 @@ router.post('/', (req, res) => {
     });
 });
 
+// edit Employee post via its id api/Employees/:id, TODO add in authentication
+router.put('/:id', (req, res) => {
+  Employee.update(req.body,
+    {
+      where: {
+        id: req.params.id
+      }
+    }
+  )
+    .then(dbEmployeeData => {
+      if (!dbEmployeeData) {
+        res.status(404).json({ message: 'No Employee found with this id' });
+        return;
+      }
+      res.json(dbEmployeeData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router; 
