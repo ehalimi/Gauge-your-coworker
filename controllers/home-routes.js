@@ -71,5 +71,17 @@ router.get('/employees/:id', (req, res) => {
     });
 });
 
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+// render handlebar login page
+  res.render('login');
+});
+// render the handlebar signup page
+router.get('/signup', (req, res) => {
+  res.render('signup');
+})
 
 module.exports = router;
