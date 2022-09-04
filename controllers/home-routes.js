@@ -2,33 +2,36 @@ const router = require('express').Router();
 const auth = require('../utils/authentication');
 const { Employee, User, Comment } = require('../models');
 
-router.get("/", (req, res) => {
-  if (req.session.loggedIn) {
-    res.render("homepage");
-    return;
-  }
-  res.render("homepage");
-});
-
-router.get("/login", (req, res) => {
-  if (req.session.loggedIn) {
-    res.render("dashboard");
-    return;
-  }
-  res.render("login");
-});
-
-//Logout
-router.post("/logout", (req, res) => {
-  if (req.session.loggedIn) {
-    res.json({ message: "You are now logged out!" });
-    req.session.destroy(() => {
-      res.status(204).end();
+// get all employees for the homepage
+router.get('/', (req, res) => {
+  Employee.findAll({
+    attributes: [
+      'id',
+      'employee_name',
+      'work_name',
+      'position'
+    ],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'Employee_id', 'user_id', 'created_at'],
+   
+      }
+    ]
+  })
+    // map data to get content
+    .then(dbEmployeeData => {
+      const employees = dbEmployeeData.map(employee => employee.get({ plain: true }));
+// render handlebar home page for this data. 
+      res.render('homepage', {
+        employees,
+        // loggedIn: req.session.loggedIn
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
     });
-  } else {
-    res.status(404).end();
-  }
 });
-
 
 module.exports = router;

@@ -4,7 +4,6 @@ async function newEmployee(event) {
     // get needed data for employee
     const employee_name = document.querySelector('#employee-name').value; 
     const position = document.querySelector('#position');
-    const workplace = document.querySelector('#workplace');
 
     const response = await fetch(`/api/employee`, {
         method: 'POST',
