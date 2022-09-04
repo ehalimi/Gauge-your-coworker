@@ -96,4 +96,26 @@ router.put('/:id', (req, res) => {
     });
 });
 
+// allows user to delete Employee posting via its id api/Employees/:id TODO Add Authentication back in
+router.delete('/:id', (req, res) => {
+  console.log('id', req.params.id);
+  Employee.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then(dbEmployeeData => {
+      if (!dbEmployeeData) {
+        res.status(404).json({ message: 'No Employee found with this id' });
+        return;
+      }
+      res.json(dbEmployeeData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+
 module.exports = router; 
