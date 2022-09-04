@@ -22,4 +22,25 @@ router.post('/', (req, res) => {
         console.log(err);
         res.status(400).json(err);
       });
+});
+  
+// delete comments - TODO add authentication in. 
+router.delete('/:id', (req, res) => {
+    console.log('id', req.params.id);
+    Comment.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+      .then(dbCommentData => {
+        if (!dbCommentData) {
+          res.status(404).json({ message: 'No Comment found with this id' });
+          return;
+        }
+        res.json(dbCommentData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
   });
