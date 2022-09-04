@@ -1,37 +1,55 @@
-<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scal=1.0">
-        <title>Gauge Your Coworker</title>
-        <link rel="stylesheet" href="/stylesheets/style.css">
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scal=1.0" />
+    <title>Gauge Your Coworker</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
 
-    <body>
-        <div class="wrapper">
-            <header>
-                <h1>
-                    <a href="/">Gauge Your Coworker</a>
-                </h1>
-                <nav>
-                    {{#if loggedIn}}
-                    <a href="/dashboard">dashboard</a>
-                    <button id="logout" class="btn-no-style">logout</button>
-                    {{else}}
-                    <a href="/login">login</a>
-                    {{/if}}
-                </nav>
-            </header>
-            <main>
-                {{{ body }}}
-            </main>
-            <footer>
-                Speak Up!
-            </footer>
-        </div>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>
+          <a href="/">Gauge Your Coworker</a>
+        </h1>
+        <nav>
+          {{#if loggedIn}}
+            <ul class="row text-center justify-content-center">
+              <li class="col-4">
+                <a href="/">Homepage</a>
+              </li>
+              <li class="col-4">
+                <a href="/dashboard">Dashboard</a>
+              </li>
+              <li class="col-4">
+                <a href="/" id="logout">logout</a>
+              </li>
+            </ul>
+          {{else}}
+            <ul class="row text-center justify-content-center">
+              <li class="col-4">
+                <a href="/">Homepage</a>
+              </li>
+              <li class="col-4">
+                <a href="/login">login</a>
+              </li>
+            </ul>
+          {{/if}}
+        </nav>
+      </header>
+      <main>
+        {{{body}}}
+      </main>
+      <footer>
+        Speak Up!
+      </footer>
+    </div>
 
-        {{#if loggedIn}}
-        <script src="/javascript/logout.js"></script>
-        {{/if}}
-    </body>
+    {{#if loggedIn}}
+
+      <script src="/javascript/logout.js"></script>
+    {{/if}}
+    <!--Add js before end body tag-->
+
+  </body>
 </html>

@@ -1,35 +1,87 @@
-const router = require("express").Router();
-const sequelize = require("../config/connection");
-const { Employee } = require("../models");
-const withAuth = require("../utils/auth");
+const router = require('express').Router();
+const auth = require('../utils/authentication');
+const { Employee, User, Comment } = require('../models');
 
-router.get("/", (req, res) => {
-  if (req.session.loggedIn) {
-    res.render("homepage");
-    return;
-  }
-  res.render("homepage");
-});
-
-router.get("/login", (req, res) => {
-  if (req.session.loggedIn) {
-    res.render("dashboard");
-    return;
-  }
-  res.render("login");
-});
-
-//Logout
-router.post("/logout", (req, res) => {
-  if (req.session.loggedIn) {
-    res.json({ message: "You are now logged out!" });
-    req.session.destroy(() => {
-      res.status(204).end();
+// get all employees for the homepage
+router.get('/', (req, res) => {
+  Employee.findAll({
+    attributes: [
+      'id',
+      'employee_name',
+      'work_name',
+      'position'
+    ],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'Employee_id', 'user_id', 'created_at'],
+   
+      }
+    ]
+  })
+    // map data to get content
+    .then(dbEmployeeData => {
+      const employees = dbEmployeeData.map(employee => employee.get({ plain: true }));
+// render handlebar home page for this data. 
+      res.render('homepage', {
+        employees,
+        
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
     });
-  } else {
-    res.status(404).end();
-  }
 });
 
+// get employees by id so we can view the reviews left by coworkers
+router.get('/employees/:id', (req, res) => {
+  Employee.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      'id',
+      'employee_name',
+      'work_name',
+      'position'
+    ],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'Employee_id', 'created_at'],
+
+      }
+    ]
+  })
+    .then(dbEmployeeData => {
+      if (!dbEmployeeData) {
+        res.status(404).json({ message: 'No employee found with this id' });
+        return;
+      }
+      const employee = dbEmployeeData.get({ plain: true });
+      // render employee page so we can view reviews
+      res.render('single-comment', {
+        employee
+      })
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
+router.get('/login', (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+// render handlebar login page
+  res.render('login');
+});
+// render the handlebar signup page
+router.get('/signup', (req, res) => {
+  res.render('signup');
+})
 
 module.exports = router;
