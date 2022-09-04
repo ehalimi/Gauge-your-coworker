@@ -25,6 +25,7 @@ router.get('/', (req, res) => {
 // render handlebar home page for this data. 
       res.render('homepage', {
         employees,
+        loggedIn: true
         
       });
     })
