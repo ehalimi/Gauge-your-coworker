@@ -18,14 +18,11 @@ Employee.init(
                 len: [1]
             }
         },
-        //TODO: take it off if it's hard
-        workplace_id: {
+        work_name: {
             type: DataTypes.STRING,
-            references: {
-                model: 'workplace',
-                key: 'id'
-            }
+            allowNull: false,
         },
+        
         position: {
             type: DataTypes.STRING,
             allowNull: false

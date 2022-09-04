@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { Employee } = require("../models");
-const withAuth = require("../utils/auth");
+const withAuth = require("../utils/authentication");
 
 router.get("/", (req, res) => {
   if (req.session.loggedIn) {

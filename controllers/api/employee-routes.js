@@ -1,10 +1,23 @@
 const router = require('express').Router();
-const { Employee, Workplace, Comment } = require('../../models');
+const { Employee, User, Comment } = require('../../models');
+const auth = require('../../utils/authentication');
 
-// get all users
+// get all Employee post at /api/Employees
 router.get('/', (req, res) => {
   Employee.findAll({
-    attributes: { exclude: ['password'] }
+    attributes: [
+      'id',
+      'employee_name',
+      'work_name',
+      'position'
+    ],
+    include: [
+      {
+        model: Comment,
+        attributes: ['id', 'comment_text', 'Employee_id', 'user_id', 'created_at'],
+   
+      }
+    ]
   })
     .then(dbEmployeeData => res.json(dbEmployeeData))
     .catch(err => {
@@ -12,145 +25,99 @@ router.get('/', (req, res) => {
       res.status(500).json(err);
     });
 });
+// // get specific Employee post via id using /api/Employees/:id
+// router.get('/:id', (req, res) => {
+//   Employee.findOne({
+//     where: {
+//       id: req.params.id
+//     },
+//     attributes: [
+//       'id',
+//       'Employee_content',
+//       'title',
+//       'created_at'
+//     ],
+//     include: [
+//       {
+//         model: Comment,
+//         attributes: ['id', 'comment_text', 'Employee_id', 'user_id', 'created_at'],
+//         include: {
+//           model: User,
+//           attributes: ['username']
+//         }
+//       },
+//       {
+//         model: User,
+//         attributes: ['username']
+//       }
+//     ]
+//   })
+//     .then(dbEmployeeData => {
+//       if (!dbEmployeeData) {
+//         res.status(404).json({ message: 'No Employee found with this id' });
+//         return;
+//       }
+//       res.json(dbEmployeeData);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
+// // add a Employee post via api/Employees - making sure user is logged in with auth
+// router.post('/', auth, (req, res) => {
 
-router.get('/:id', (req, res) => {
-  Employee.findOne({
-    attributes: { exclude: ['password'] },
-    where: {
-      id: req.params.id
-    },
-    include: [
-      {
-        model: Workplace,
-        attributes: ['id', 'title', 'post_url', 'created_at']
-      },
-      {
-        model: Comment,
-        attributes: ['id', 'comment_text', 'created_at'],
-        include: {
-          model: Workplace,
-          attributes: ['title']
-        }
-      },
-      {
-        model: Workplace,
-        attributes: ['title'],
-        through: Employee,
-        as: 'employee_posts'
-      }
-    ]
-  })
-    .then(dbEmployeeData => {
-      if (!dbEmployeeData) {
-        res.status(404).json({ message: 'No employee found with this id' });
-        return;
-      }
-      res.json(dbUserData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-router.Employee('/', (req, res) => {
-  User.create({
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password
-  })
-    .then(dbEmployeeData => {
-      req.session.save(() => {
-        req.session.user_id = dbEmployeeData.id;
-        req.session.username = dbEmployeeData.username;
-        req.session.loggedIn = true;
-  
-        res.json(dbUserData);
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-router.post('/login', (req, res) => {
-  Employee.findOne({
-    where: {
-      email: req.body.email
-    }
-  }).then(dbEmployeeData => {
-    if (!dbEmployeeData) {
-      res.status(400).json({ message: 'No user with that email address!' });
-      return;
-    }
-
-    const validPassword = dbUserData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res.status(400).json({ message: 'Incorrect password!' });
-      return;
-    }
-
-    req.session.save(() => {
-      req.session.user_id = dbUserData.id;
-      req.session.username = dbUserData.username;
-      req.session.loggedIn = true;
-  
-      res.json({ user: dbEmployeeData, message: 'You are now logged in!' });
-    });
-  });
-});
-
-router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  }
-  else {
-    res.status(404).end();
-  }
-});
-
-router.put('/:id', (req, res) => {
-// pass in req.body instead to only update what's passed through
-  Employee.update(req.body, {
-    individualHooks: true,
-    where: {
-      id: req.params.id
-    }
-  })
-    .then(dbEmployeeData => {
-      if (!dbEmployeeData) {
-        res.status(404).json({ message: 'No employee found with this id' });
-        return;
-      }
-      res.json(dbUserData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-router.delete('/:id', (req, res) => {
-  Employee.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-    .then(dbEmployeeData => {
-      if (!dbEmployeeData) {
-        res.status(404).json({ message: 'No employee found with this id' });
-        return;
-      }
-      res.json(dbUserData);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
+//   Employee.create({
+//     title: req.body.title,
+//     Employee_content: req.body.Employee_content,
+//     user_id: req.session.user_id
+//   })
+//     .then(dbEmployeeData => res.json(dbEmployeeData))
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
+// // edit Employee post via its id api/Employees/:id, again insuring user is signed in
+// router.put('/:id', auth, (req, res) => {
+//   Employee.update(req.body,
+//     {
+//       where: {
+//         id: req.params.id
+//       }
+//     }
+//   )
+//     .then(dbEmployeeData => {
+//       if (!dbEmployeeData) {
+//         res.status(404).json({ message: 'No Employee found with this id' });
+//         return;
+//       }
+//       res.json(dbEmployeeData);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
+// // allows user to delete Employee posting via its id api/Employees/:id
+// router.delete('/:id', auth, (req, res) => {
+//   console.log('id', req.params.id);
+//   Employee.destroy({
+//     where: {
+//       id: req.params.id
+//     }
+//   })
+//     .then(dbEmployeeData => {
+//       if (!dbEmployeeData) {
+//         res.status(404).json({ message: 'No Employee found with this id' });
+//         return;
+//       }
+//       res.json(dbEmployeeData);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json(err);
+//     });
+// });
 
 module.exports = router;

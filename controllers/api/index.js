@@ -1,9 +1,9 @@
 const router = require('express').Router();
 
 const employeeRoutes = require('./employee-routes.js');
-const commentRoutes = require('./comment-routes');
+// const commentRoutes = require('./comment-routes');
 
-router.use('/employee', employeeRoutes);
-router.use('/comments', commentRoutes);
+router.use('/employees', employeeRoutes);
+// router.use('/comments', commentRoutes);
 
 module.exports = router;
