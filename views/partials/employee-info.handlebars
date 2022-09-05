@@ -1,18 +1,18 @@
 <div>
   <div>
-    <h4>{{employee_name}}</h4>
+    <h4 class="employee-name">{{employee_name}}</h4>
     <ul>
-      <li>
-        {{work_name}}
+      <li class="row">
+        <p class="col-3">Workplace:</p> <p class="col-4">{{work_name}}</p>
+      </li>
+      <li class="row">
+        <p class="col-3">Position:</p> <p class="col-4">{{position}}</p>
       </li>
       <li>
-        {{position}}
-      </li>
-      <li>
-        Mood Today
+      Mood Today: 
        
       </li>
-    <a href="/employees/{{id}}">{{comments.length}}
+    <a class="review" href="/employees/{{id}}">{{comments.length}}
       {{format_plural "review" comments.length}}</a>
   </div>
 </div>
