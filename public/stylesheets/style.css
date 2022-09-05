@@ -5,11 +5,12 @@
 }
     
 :root{
+     
         --primary-color:#1a70f2ea;
         --secondary-color: #170f61; 
         --tertiary-color: #78a7edef;
         --fourth-color:#6b9fedef;
-        --fifth-color:#568fe4ef;
+        --fifth-color:#568fe4ef; 
 }
 ul, nav {
     list-style-type: none;
