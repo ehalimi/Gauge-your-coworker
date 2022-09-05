@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
 });
 
 // get employees by id so we can view the reviews left by coworkers
-router.get('/employees/:id', (req, res) => {
+router.get('/employees/:id', auth, (req, res) => {
   Employee.findOne({
     where: {
       id: req.params.id

@@ -1,4 +1,6 @@
+<div class="employee-section comment-employee">
 {{> employee-info employee}}
+</div>
 
 {{#if loggedIn}}
 <form class="star-rating">
@@ -6,12 +8,15 @@
         {{!-- TODO: created a div so we can put the star rating using rater js --}}
     </div>
 </form>
-<form class="comment-form">
-    <div>
-        <textarea id="comment-text" name="comment-text"></textarea>
+
+<form class="comment-form row ">
+<div class="row">
+    <div class="col-12">
+        <textarea id="comment-text" class='comment-textarea'name="comment-text"></textarea>
     </div>
+</div>
     <div>
-        <button type="submit">Add comment</button>
+        <button class="btn" type="submit">Add comment</button>
     </div>
 </form class="row text-left">
 {{/if}}

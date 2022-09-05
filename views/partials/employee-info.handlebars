@@ -3,17 +3,19 @@
     <h4 class="employee-name">{{employee_name}}</h4>
     <ul>
       <li class="row">
-        <p class="col-3">Workplace:</p> <p class="col-4">{{work_name}}</p>
+        <p class="col-3 text-end">Workplace:</p> <p class="col-4">{{work_name}}</p>
       </li>
       <li class="row">
-        <p class="col-3">Position:</p> <p class="col-4">{{position}}</p>
+        <p class="col-3 text-end">Position:</p> <p class="col-4">{{position}}</p>
       </li>
-      <li>
-      Mood Today: 
+      <li class="row">
+      <p class="col-3 text-end">Mood Today:</p>
        
       </li>
-    <a class="review" href="/employees/{{id}}">{{comments.length}}
+    <a class="review col-3 text-end" href="/employees/{{id}}">{{comments.length}}
       {{format_plural "review" comments.length}}</a>
+      <br>
+    <a class='review col-3 text-end' href="/dashboard/edit/{{{id}}}" class="edit-link">Edit Employee</a>
   </div>
 </div>
 

@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
     });
 });
 // edit comments
-router.put('/:id', (req, res) => {
+router.put('/:id', auth,(req, res) => {
   Comment.update(req.body,
     {
       where: {
@@ -55,7 +55,7 @@ router.put('/:id', (req, res) => {
     });
 });
 // post comments via /api/comments,TODO add in authentication
-router.post('/', (req, res) => {
+router.post('/', auth, (req, res) => {
   Comment.create({
     employee_id: req.body.employee_id,
     comment_text: req.body.comment_text
@@ -69,7 +69,7 @@ router.post('/', (req, res) => {
 
 
 // delete comments - TODO add authentication in. 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', auth, (req, res) => {
     console.log('id', req.params.id);
     Comment.destroy({
       where: {

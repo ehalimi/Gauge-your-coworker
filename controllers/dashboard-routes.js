@@ -1,9 +1,8 @@
 const router = require('express').Router();
-const sequelize = require('../config/connection');
 const { Employee, User, Comment } = require('../models');
-cons = require('../utils/authentication');
+const auth = require('../utils/authentication');
 
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res) => {
   Employee.findAll({
     attributes: [
       'id',
@@ -32,7 +31,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', auth, (req, res) => {
   Employee.findOne({
     where: {
       id: req.params.id

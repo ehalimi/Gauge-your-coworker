@@ -1,27 +1,49 @@
-<section class="text-center">
-  <h2>Add a new employee</h2>
-
-  <form class="new-employee-form row">
-    <div class="col-12 row">
-      <label class="col-md-4 text-end" for="employee-name">Name:</label>
-      <input
-        class="col-md-6"
-        type="text"
-        name="employee-name"
-        id="employee-name"
-      />
-    </div>
-    <div class="col-12 row">
-      <label class="col-md-4 text-end" for="work-name">Workplace:</label>
-      <input class="col-md-6" type="text" name="work-name" id="work-name" />
-    </div>
-    {{! TODO added position here as well since it is in the employee models }}
-    <div class="col-12 row">
-      <label class="col-md-4 text-end" for="position">Position:</label>
-      <input class="col-md-6" type="text" name="position" id="position" />
-    </div>
-    <button type="submit" class="btn">Create</button>
-  </form>
-</section>
+<div class="row text-center form-div">
+  <div class="col-12">
+    <h2 class="col-12 form-title">Add a new employee</h2>
+    <form class="new-employee-form row">
+      <div class="row justify-content-center">
+        <label
+          class="col-12 col-sm-3 text-md-end"
+          for="employee-name"
+        >Name:</label>
+        <input
+          class="col-12 col-sm-4"
+          type="text"
+          name="employee-name"
+          id="employee-name"
+        />
+      </div>
+      <div class="row justify-content-center">
+        <label
+          class="col-12 col-sm-3 text-md-end"
+          for="work-name"
+        >Workplace:</label>
+        <input
+          class="col-12 col-sm-4"
+          type="text"
+          name="work-name"
+          id="work-name"
+        />
+      </div>
+      {{! TODO added position here as well since it is in the employee models }}
+      <div class="row justify-content-center">
+        <label
+          class="col-12 col-sm-3 text-md-end"
+          for="position"
+        >Position:</label>
+        <input
+          class="col-12 col-sm-4"
+          type="text"
+          name="position"
+          id="position"
+        />
+      </div>
+      <div>
+        <button type="submit" class="btn col-2">Create</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <script src="/javascript/add-employee.js"></script>

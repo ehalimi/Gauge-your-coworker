@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
     });
 });
 // get specific Employee post via id using /api/Employees/:id
-router.get('/:id', (req, res) => {
+router.get('/:id', auth, (req, res) => {
   Employee.findOne({
     where: {
       id: req.params.id
@@ -58,7 +58,7 @@ include: [
     });
 });
 // add a Employee post via api/Employees TODO need to add authentication in later
-router.post('/', (req, res) => {
+router.post('/', auth, (req, res) => {
 
   Employee.create({
     employee_name: req.body.employee_name,
@@ -72,7 +72,7 @@ router.post('/', (req, res) => {
     });
 });
 // edit Employee post via its id api/Employees/:id, TODO add in authentication
-router.put('/:id', (req, res) => {
+router.put('/:id', auth, (req, res) => {
   Employee.update(req.body,
     {
       where: {
@@ -93,7 +93,7 @@ router.put('/:id', (req, res) => {
     });
 });
 // allows user to delete Employee posting via its id api/Employees/:id TODO Add Authentication back in
-router.delete('/:id', (req, res) => {
+router.delete('/:id', auth, (req, res) => {
   console.log('id', req.params.id);
   Employee.destroy({
     where: {
