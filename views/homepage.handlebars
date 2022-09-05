@@ -1,7 +1,9 @@
-<ol class="employee-list">
-    {{#each employees as |employee|}}
-    <li>
-        {{> employee-info employee}}
-    </li>
-    {{/each}}
-</ol>
+<div class="employee-list" >
+    <ul   class="row">
+        {{#each employees as |employee|}}
+        <li class="col-12 employee-section">
+            {{> employee-info employee}}
+        </li>
+        {{/each}}
+    </ul>
+</div>

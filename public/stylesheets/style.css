@@ -1,12 +1,31 @@
+*{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+}
+    
+:root{
+        --primary-color:#1369ebb4;
+        --secondary-color: #170f61; 
+        --tertiary-color: #1a62ceef;
+}
 ul, nav {
     list-style-type: none;
 }
 
-
-.star-rating {
-        background: url("myStar_off.svg") ;
+main{
+        height: 90vh;
+        overflow-y: scroll; 
 }
- 
-.star-rating .star-value{
-        background: url("myStar_on.svg") ;
+header{
+        background-color: var(--secondary-color);
+}
+
+
+
+.employee-section{
+        margin-bottom: 15px;
+        margin-top:15px; 
+        padding:10px; 
+        background-color: var(--primary-color);
 }
