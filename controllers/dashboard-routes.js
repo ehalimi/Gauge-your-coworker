@@ -71,6 +71,37 @@ router.get('/edit/:id', (req, res) => {
     });
 });
 
+router.get('/edit/comment/:id', (req, res) => {
+  Comment.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      'id',
+      'comment_text'
+    ],
+  })
+    .then(dbcommentData => {
+      console.log(dbcommentData)
+      if (!dbcommentData) {
+        res.status(404).json({ message: 'No comment found with this id' });
+        return;
+      }
+      const comment = dbcommentData.get({ plain: true });
+      // render comment page so we can view reviews
+      res.render('edit-comment', {
+        comment,
+        loggedIn: true 
+        
+      })
+    })
+    .catch(err => {
+    
+      res.status(500).json(err);
+    });
+});
+
+
 
 
 module.exports = router;

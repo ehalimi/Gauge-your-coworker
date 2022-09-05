@@ -10,6 +10,50 @@ router.get('/', (req, res) => {
       res.status(500).json(err);
     });
 });
+// get specific Employee post via id using /api/Employees/:id
+router.get('/:id', (req, res) => {
+  Comment.findOne({
+    where: {
+      id: req.params.id
+    },
+  attributes: [
+  'id',
+ 'comment_text'
+],
+
+  })
+    .then(dbCommentData => {
+      if (!dbCommentData) {
+        res.status(404).json({ message: 'No Comment found with this id' });
+        return;
+      }
+      res.json(dbCommentData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+// edit comments
+router.put('/:id', (req, res) => {
+  Comment.update(req.body,
+    {
+      where: {
+      id: req.params.id
+    },
+  })
+    .then(dbCommentData => {
+      if (!dbCommentData) {
+        res.status(404).json({ message: 'No Comment found with this id' });
+        return;
+      }
+      res.json(dbCommentData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 // post comments via /api/comments,TODO add in authentication
 router.post('/', (req, res) => {
   Comment.create({
