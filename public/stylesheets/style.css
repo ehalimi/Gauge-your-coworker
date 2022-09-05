@@ -7,12 +7,17 @@
 :root{
         --primary-color:#1a70f2ea;
         --secondary-color: #170f61; 
-        --tertiary-color: #0f3d81ef;
+        --tertiary-color: #78a7edef;
+        --fourth-color:#6b9fedef;
+        --fifth-color:#568fe4ef;
 }
 ul, nav {
     list-style-type: none;
 }
 
+body{
+        background-color: var(--tertiary-color);
+}
 
 main{
         height: 90vh;
@@ -85,6 +90,11 @@ label{
         width: 100%;
         height: 100px;
 }
+.comment-textarea-edit{
+        width: 100%;
+        height: 100px;
+        margin-left: 65px;
+}
 
 .posted-comments{
         margin-left: 25px;
@@ -105,5 +115,18 @@ input{
         margin-top: 5px;
         margin-bottom: 5px;
         
+}
+
+.comment-post-text{
+        font-weight: bold;
+        font-size: 25px;
+        padding: 25px;
+        background-color: var(--fifth-color);
+}
+
+.comment{
+        margin-top: 25px;
+        margin-bottom: 25px;
+        background-color: var(--fourth-color);
 }
 

@@ -5,11 +5,12 @@
         <div class="col-12">
           {{format_date created_at}}
         </div>
-        <div class="text col-12">
+        <div class="text col-12 comment-post-text">
           {{comment_text}}
         </div>
+        <a href="/dashboard/edit/comment/{{{id}}}" class="edit">Edit Comment</a>
       </section>
-      <a href="/dashboard/edit/comment/{{{id}}}" class="edit">Edit Comment</a>
+
     {{/each}}
   </div>
 </div>

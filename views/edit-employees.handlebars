@@ -1,15 +1,15 @@
-<section class="row text-center">
+<section class="row text-center form-div">
   <h2 class="form-title">
     Edit Employee Information
   </h2>
   <form class="edit-employee-form row">
     <div class="row justify-content-center">
-      <label class="col-2" for="employee-name">Name</label>
-      <p class="col-2" id="employee-name">{{employee.employee_name}}</p>
+      <label class="col-12 col-sm-3 text-md-end" for="employee-name">Name:</label>
+      <p class="col-12 col-sm-4" id="employee-name">{{employee.employee_name}}</p>
     </div>
     <div class="row justify-content-center">
-      <label class="col-2" for="work-name">Workplace</label>
-      <input class="col-2"
+      <label class="col-12 col-sm-3 text-md-end" for="work-name">Workplace:</label>
+      <input class="col-12 col-sm-4"
         id="work-name"
         name="work-name"
         type="text"
@@ -17,15 +17,15 @@
       />
     </div>
        <div class="row justify-content-center">
-      <label class="col-2" for="position">Job Position</label>
-      <input class="col-2"
+      <label class="col-12 col-sm-3 text-md-end" for="position">Job Position:</label>
+      <input class="col-12 col-sm-4"
         id="position"
         name="position"
         type="text"
         value="{{employee.position}}"
       />
     </div>
-  <div class="row">
+  <div>
     <button class=" btn col-2 " type="submit">Save</button>
   </div>  
   </form>
