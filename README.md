@@ -8,6 +8,7 @@
 You can access this Github Repository at: https://github.com/Morgan1317/Gauge-your-coworker.git
 
 ## *Description*
+Gauge My Coworkers platform and mobile app provide employees' generated feedback on their co-workers' general performance and behaviors. Our mission is to provide a safe forum to share workplace experiences to help fellow working professional make critical career choices. 
 
 ## Screenshot
 
