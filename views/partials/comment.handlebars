@@ -1,0 +1,17 @@
+<div class="row justify-content-center posted-comments">
+
+  <div class="comments row">
+    {{#each this}}
+      <section class="comment row">
+        <div class="col-12">
+          {{format_date created_at}}
+        </div>
+        <div class="text col-12 comment-post-text">
+          {{comment_text}}
+        </div>
+        <a href="/dashboard/edit/comment/{{{id}}}" class="edit">Edit Comment</a>
+      </section>
+
+    {{/each}}
+  </div>
+</div>

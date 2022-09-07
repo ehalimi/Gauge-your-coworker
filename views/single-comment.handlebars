@@ -1,0 +1,45 @@
+<div class="employee-section comment-employee">
+{{> employee-info employee}}
+</div>
+
+{{#if loggedIn}}
+
+      <div class="container row">
+        <p class="col-3 text-end" style="font-weight:bolder">Mood Today:</p>
+        <div class="star-style col-7" id="star-style">
+          <input type="radio" name="rate" id="rate-1" />
+          <label for="rate-1" class="fas fa-star"></label>
+          <input type="radio" name="rate" id="rate-2" />
+          <label for="rate-2" class="fas fa-star"></label>
+          <input type="radio" name="rate" id="rate-3" />
+          <label for="rate-3" class="fas fa-star"></label>
+          <input type="radio" name="rate" id="rate-4" />
+          <label for="rate-4" class="fas fa-star"></label>
+          <input type="radio" name="rate" id="rate-5" />
+          <label for="rate-5" class="fas fa-star"></label>
+        </div>
+      </div>
+ 
+<form class="comment-form row ">
+<div class="row">
+    <div class="col-12">
+        <textarea id="comment-text" class='comment-textarea'name="comment-text"></textarea>
+    </div>
+</div>
+    <div>
+        <button class="btn" type="submit">Add Review</button>
+    </div>
+</form class="row text-left">
+{{/if}}
+
+{{> comment employee.comments}}
+
+{{#if loggedIn}}
+<script src="/javascript/comment.js"></script>
+
+{{!-- TODO: link it to rater js file --}}
+{{!-- <script src="node-modules/rater-js/index.js"></script> --}}
+<script src="/javascript/rater.js"></script>
+
+
+{{/if}}

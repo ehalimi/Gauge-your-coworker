@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS rating_db;
+
+CREATE DATABASE rating_db;

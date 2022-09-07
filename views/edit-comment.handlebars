@@ -1,0 +1,27 @@
+<div class="row text-center form-div">
+  <section class="row text-center">
+    <h2 class="form-title">
+      Edit Comment
+    </h2>
+    <form class="edit-comment-form row">
+      <div class="row justify-content-center">
+        <label class="col-12 col-sm-3 text-md-end" for="comment_content">Comment
+          Content:</label>
+        <textarea
+          class="col-12 col-sm-4 comment-textarea-edit"
+          id="comment_content"
+        >{{comment.comment_text}}</textarea>
+      </div>
+      <div class="row justify-content-center">
+        <button class="save-comment-btn btn col-2" type="submit">Save</button>
+        <button
+          class="btn col-2 delete-comment-btn"
+          type="button"
+        >Delete</button>
+      </div>
+    </form>
+  </section>
+</div>
+
+<script src="/javascript/edit-comment.js"></script>
+<script src="/javascript/delete-comment.js"></script>
