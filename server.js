@@ -3,8 +3,8 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const controllers = require('./controllers');
-// TODO don't forget to implement this everywhere
-// const rater = require('rater-js');
+// helmet package to help secure express app
+const helmet = require("helmet");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -31,6 +31,9 @@ const hbs = exphbs.create({ helpers });
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+app.use(helmet({
+  referrerPolicy: { policy: "no-referrer" },
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));

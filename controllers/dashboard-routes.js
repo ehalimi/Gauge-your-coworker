@@ -16,7 +16,7 @@ router.get('/', auth, (req, res) => {
         attributes: ['id', 'comment_text', 'Employee_id', 'user_id', 'created_at'],
    
       }
-    ]
+    ],
   })
     // map data to get content
     .then(dbEmployeeData => {
