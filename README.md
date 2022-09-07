@@ -16,7 +16,8 @@ Gauge My Coworkers platform and mobile app provide employees' generated feedback
 
 ## Screenshot
 
-<img src= "./public/images/Screen Shot 2022-09-06 at 7.42.28 PM.png">
+<img width="1721" alt="Screen Shot 2022-09-06 at 8 24 47 PM" src="https://user-images.githubusercontent.com/103079401/188768331-981dd473-9144-4164-8691-76b14fc08a45.png">
+
 
 # Table of Contents
 
