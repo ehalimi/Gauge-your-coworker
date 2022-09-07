@@ -12,7 +12,10 @@ You can access this Github Repository at: https://github.com/Morgan1317/Gauge-yo
 
 ## _Description_
 
-Gauge My Coworkers platform and mobile app provide employees' generated feedback on their co-workers' general performance and behaviors. Our mission is to provide a safe forum to share workplace experiences to help fellow working professional make critical career choices.
+Gauge My Coworkers platform and mobile app provide employees' generated feedback on their co-workers' general performance and behaviors. Our mission is to provide a safe forum to share workplace experiences to help fellow working professional make critical career choices. 
+
+Live application can be seen here. 
+https://boiling-lowlands-04909.herokuapp.com/
 
 ## Screenshot
 
