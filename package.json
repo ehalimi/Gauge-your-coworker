@@ -32,9 +32,9 @@
     "handlebars": "4.7.7",
     "helmet": "^6.0.0",
     "mdb-ui-kit": "^5.0.0",
-    "mysql2": "2.3.3",
+    "mysql2": "^2.3.3",
     "nodemon": "2.0.19",
     "rater-js": "^1.0.1",
-    "sequelize": "6.21.4"
+    "sequelize": "^6.21.3"
   }
 }
